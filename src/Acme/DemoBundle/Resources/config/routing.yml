@@ -1,0 +1,5 @@
+sdzblog_accueil:
+    pattern:   /
+    defaults:  { _controller: AcmeDemoBundle:Demo:index }
+  
+  
