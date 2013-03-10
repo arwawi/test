@@ -30,7 +30,7 @@ class DebugHandler extends TestHandler implements DebugLoggerInterface
         $records = array();
         foreach ($this->records as $record) {
             $records[] = array(
-                'timestamp'    => $record['datetime']->getTimestamp(),
+           //     'timestamp'    => $record['datetime']->getTimestamp(),
                 'message'      => $record['message'],
                 'priority'     => $record['level'],
                 'priorityName' => $record['level_name'],

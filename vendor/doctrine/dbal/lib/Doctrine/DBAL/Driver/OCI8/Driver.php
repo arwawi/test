@@ -50,7 +50,7 @@ class Driver implements \Doctrine\DBAL\Driver
      */
     protected function _constructDsn(array $params)
     {
-        $dsn = '';
+      /*  $dsn = '';
         if (isset($params['host']) && $params['host'] != '') {
             $dsn .= '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)' .
                    '(HOST=' . $params['host'] . ')';
@@ -72,7 +72,15 @@ class Driver implements \Doctrine\DBAL\Driver
             $dsn .= ')';
         } else {
             $dsn .= $params['dbname'];
-        }
+        }*/
+        $dsn='(DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = abdelaziz-TOSH)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = XE)
+    )
+  )';
+         var_dump($dsn);
         return $dsn;
     }
 
