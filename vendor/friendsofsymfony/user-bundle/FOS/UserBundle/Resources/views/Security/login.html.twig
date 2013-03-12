@@ -5,18 +5,36 @@
 <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
 {% endif %}
 
-<form  class="form-horizontal" action="{{ path("fos_user_security_check") }}" method="post">
+<form class="box login" action="{{ path("fos_user_security_check") }}" method="post">
+	<fieldset class="boxBody">
+	  <label>Username</label>
+               <input type="text" tabindex="1" id="username"  placeholder="PremiumPixel"  name="_username" value="{{ last_username }}" required="required" />
+   
+	  <label>Password</label>
+          <input type="password" tabindex="2" id="password" name="_password" required="required" />
 
+	</fieldset>
+	<footer>
+         
+
+	  <label><input type="checkbox" tabindex="3">{{ 'Remember me'|trans({}, 'FOSUserBundle') }}</label>
+	  <input type="submit" class="btnLogin" value="Login" tabindex="4">
+	</footer>
+</form>
+
+
+{#<form  class="form-horizontal" action="{{ path("fos_user_security_check") }}" method="post">
+    <fieldset>
    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
    
     <div class="control-group">
-    <label class="control-label"  for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+    <label class="control-label"  for="username">Login</label>
     <div class="controls">
         <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
     </div>
     </div>
    <div class="control-group">
-    <label class="control-label"  for="inputPassword" >{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+    <label class="control-label"  for="inputPassword" >Password</label>
     <div class="controls">
     <input type="password" id="password" name="_password" required="required" />
 </div>
@@ -31,6 +49,7 @@
    
     <input type="submit" class="btn" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
 
-
-</form>
+</fieldset>
+</form> #}
+       
 {% endblock fos_user_content %}

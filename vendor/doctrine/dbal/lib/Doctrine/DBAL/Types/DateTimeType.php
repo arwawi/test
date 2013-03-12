@@ -43,17 +43,23 @@ class DateTimeType extends Type
         return ($value !== null)
             ? $value->format($platform->getDateTimeFormatString()) : null;
     }
-
-    public function convertToPHPValue($value, AbstractPlatform $platform)
-    {
-        if ($value === null || $value instanceof \DateTime) {
-            return $value;
-        }
-
-        $val = \DateTime::createFromFormat($platform->getDateTimeFormatString(), $value);
-        if ( ! $val) {
-            throw ConversionException::conversionFailedFormat($value, $this->getName(), $platform->getDateTimeFormatString());
-        }
-        return $val;
-    }
+//Modification 
+//Probleme timezone ,dans l activation et l ajout d'un role ,donc j'ai commenté cette fonction 
+//qui a causé le probleme
+//
+//
+//
+////////////////////////////////////////////////
+//    public function convertToPHPValue($value, AbstractPlatform $platform)
+//    {
+//        if ($value === null || $value instanceof \DateTime) {
+//            return $value;
+//        }
+//
+//        $val = \DateTime::createFromFormat($platform->getDateTimeFormatString(), $value);
+//        if ( ! $val) {
+//            throw ConversionException::conversionFailedFormat($value, $this->getName(), $platform->getDateTimeFormatString());
+//        }
+//        return $val;
+//    }
 }

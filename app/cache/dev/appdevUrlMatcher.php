@@ -206,13 +206,26 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // sdzblog_accueil
-        if (rtrim($pathinfo, '/') === '/esprit') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'sdzblog_accueil');
+        if (0 === strpos($pathinfo, '/esprit')) {
+            // sdzblog_accueil
+            if (rtrim($pathinfo, '/') === '/esprit') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'sdzblog_accueil');
+                }
+
+                return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::indexAction',  '_route' => 'sdzblog_accueil',);
             }
 
-            return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::indexAction',  '_route' => 'sdzblog_accueil',);
+            // etudiant_eol
+            if ($pathinfo === '/esprit/etudiant') {
+                return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::contactAction',  '_route' => 'etudiant_eol',);
+            }
+
+            // admin_eol
+            if ($pathinfo === '/esprit/admin') {
+                return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::indexAction',  '_route' => 'admin_eol',);
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/log')) {

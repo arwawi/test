@@ -53,31 +53,35 @@ class __TwigTemplate_4beca2560cb1e8d8cef914ba678d5b56 extends Twig_Template
                           <li><a href=\"#\">Stage et projet</a></li>
                           <li><a href=\"#\">Réglement intérieur</a></li>
                           <li><a href=\"#\">Contact</a></li>
-                          <li class=\"dropdown\">
-                              <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">
-                                  Connexion
-                                  <b class=\"caret\"></b>
-                              </a>
-                              <ul class=\"dropdown-menu\">
-                                  <form>
-                                      <fieldset>
-
-                                          <input type=\"text\" placeholder=\"Login…\">
-                                          <input type=\"password\" placeholder=\"Mot de passe…\">
-                                          <button type=\"submit\" class=\"btn\">Connexion</button>
-                                      </fieldset>
-                                  </form>
-
-                              </ul>
-
+                          <li>
+                            ";
+        // line 29
+        if ($this->env->getExtension('security')->isGranted("IS_AUTHENTICATED_REMEMBERED")) {
+            // line 30
+            echo "                                  <a href=\"#\"> Connecté en tant que ";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getContext($context, "app"), "user"), "username"), "html", null, true);
+            echo " </a> </li>
+                              <li><a href=\"";
+            // line 31
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("fos_user_security_logout"), "html", null, true);
+            // line 32
+            echo "\">Déconnexion</a><
+                                     ";
+        } else {
+            // line 34
+            echo "                                  <a href=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("fos_user_security_login"), "html", null, true);
+            echo "\">Connexion</a>
+                             ";
+        }
+        // line 36
+        echo "
                           </li>
                       </ul>
 
-                      <form class=\"navbar-search pull-left\">
-                         <input type=\"text\" class=\"search-query\" placeholder=\"Search\">
-                          
-                      </form>
-                  </div>
+                     ";
+        // line 44
+        echo "                  </div>
 
               </div>
           </div>
@@ -94,15 +98,15 @@ class __TwigTemplate_4beca2560cb1e8d8cef914ba678d5b56 extends Twig_Template
                    <div class=\"carousel-inner\">
                        
                        <div class=\"active item\"><center><img src=\"";
-        // line 68
+        // line 60
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("img/400.jpg"), "html", null, true);
         echo "\" /></center></div>
                        <div class=\"item\"><center><img src=\"";
-        // line 69
+        // line 61
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("img/4001.jpg"), "html", null, true);
         echo "\" /></center></div>
                        <div class=\"item\"><center><img src=\"";
-        // line 70
+        // line 62
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("img/4002.jpg"), "html", null, true);
         echo "\" /></center></div>
                    </div>
@@ -116,14 +120,14 @@ class __TwigTemplate_4beca2560cb1e8d8cef914ba678d5b56 extends Twig_Template
       </div>
       
           ";
-        // line 81
+        // line 73
         $this->displayBlock('body', $context, $blocks);
-        // line 85
+        // line 77
         echo "      
   ";
-        // line 86
+        // line 78
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 94
+        // line 86
         echo "  </body>
 </html>";
     }
@@ -145,27 +149,27 @@ type=\"text/css\" />
     ";
     }
 
-    // line 81
+    // line 73
     public function block_body($context, array $blocks = array())
     {
-        // line 82
+        // line 74
         echo "        
       
           ";
     }
 
-    // line 86
+    // line 78
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 87
+        // line 79
         echo "    ";
-        // line 89
+        // line 81
         echo "    <script
 src=\"//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js\"></script>
     <script type=\"text/javascript\" src=\"";
-        // line 91
+        // line 83
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/bootstrap.js"), "html", null, true);
-        // line 92
+        // line 84
         echo "\"></script>
   ";
     }
@@ -182,6 +186,6 @@ src=\"//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js\"></script>
 
     public function getDebugInfo()
     {
-        return array (  169 => 92,  167 => 91,  163 => 89,  161 => 87,  152 => 82,  149 => 81,  141 => 7,  138 => 6,  132 => 5,  125 => 86,  122 => 85,  120 => 81,  102 => 69,  98 => 68,  46 => 19,  35 => 10,  29 => 5,  23 => 1,  147 => 104,  140 => 103,  43 => 6,  40 => 5,  33 => 6,  158 => 86,  139 => 63,  135 => 62,  131 => 61,  127 => 94,  123 => 59,  106 => 70,  101 => 43,  97 => 41,  85 => 32,  80 => 30,  76 => 28,  74 => 27,  63 => 19,  58 => 17,  48 => 9,  45 => 8,  42 => 7,  36 => 5,  30 => 2,);
+        return array (  173 => 84,  171 => 83,  167 => 81,  165 => 79,  162 => 78,  156 => 74,  153 => 73,  145 => 7,  142 => 6,  136 => 5,  131 => 86,  129 => 78,  126 => 77,  124 => 73,  110 => 62,  106 => 61,  102 => 60,  84 => 44,  78 => 36,  72 => 34,  68 => 32,  66 => 31,  61 => 30,  59 => 29,  46 => 19,  35 => 10,  33 => 6,  29 => 5,  23 => 1,);
     }
 }
