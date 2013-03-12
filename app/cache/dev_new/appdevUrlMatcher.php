@@ -206,13 +206,151 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // sdzblog_accueil
-        if (rtrim($pathinfo, '/') === '/esprit') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'sdzblog_accueil');
+        // esprit_rubrique_homepage
+        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'esprit_rubrique_homepage')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DefaultController::indexAction',));
+        }
+
+        if (0 === strpos($pathinfo, '/rubrique')) {
+            // rubrique
+            if (rtrim($pathinfo, '/') === '/rubrique') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'rubrique');
+                }
+
+                return array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::indexAction',  '_route' => 'rubrique',);
             }
 
-            return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::indexAction',  '_route' => 'sdzblog_accueil',);
+            // rubrique_show
+            if (preg_match('#^/rubrique/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'rubrique_show')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::showAction',));
+            }
+
+            // rubrique_new
+            if ($pathinfo === '/rubrique/new') {
+                return array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::newAction',  '_route' => 'rubrique_new',);
+            }
+
+            // rubrique_create
+            if ($pathinfo === '/rubrique/create') {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_rubrique_create;
+                }
+
+                return array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::createAction',  '_route' => 'rubrique_create',);
+            }
+            not_rubrique_create:
+
+            // rubrique_edit
+            if (preg_match('#^/rubrique/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'rubrique_edit')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::editAction',));
+            }
+
+            // rubrique_update
+            if (preg_match('#^/rubrique/(?P<id>[^/]++)/update$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT'));
+                    goto not_rubrique_update;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'rubrique_update')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::updateAction',));
+            }
+            not_rubrique_update:
+
+            // rubrique_delete
+            if (preg_match('#^/rubrique/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                    $allow = array_merge($allow, array('POST', 'DELETE'));
+                    goto not_rubrique_delete;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'rubrique_delete')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::deleteAction',));
+            }
+            not_rubrique_delete:
+
+        }
+
+        if (0 === strpos($pathinfo, '/document')) {
+            // document
+            if (rtrim($pathinfo, '/') === '/document') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'document');
+                }
+
+                return array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::indexAction',  '_route' => 'document',);
+            }
+
+            // document_show
+            if (preg_match('#^/document/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'document_show')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::showAction',));
+            }
+
+            // document_new
+            if ($pathinfo === '/document/new') {
+                return array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::newAction',  '_route' => 'document_new',);
+            }
+
+            // document_create
+            if ($pathinfo === '/document/create') {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_document_create;
+                }
+
+                return array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::createAction',  '_route' => 'document_create',);
+            }
+            not_document_create:
+
+            // document_edit
+            if (preg_match('#^/document/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'document_edit')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::editAction',));
+            }
+
+            // document_update
+            if (preg_match('#^/document/(?P<id>[^/]++)/update$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT'));
+                    goto not_document_update;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'document_update')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::updateAction',));
+            }
+            not_document_update:
+
+            // document_delete
+            if (preg_match('#^/document/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                    $allow = array_merge($allow, array('POST', 'DELETE'));
+                    goto not_document_delete;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'document_delete')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::deleteAction',));
+            }
+            not_document_delete:
+
+        }
+
+        if (0 === strpos($pathinfo, '/esprit')) {
+            // sdzblog_accueil
+            if (rtrim($pathinfo, '/') === '/esprit') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'sdzblog_accueil');
+                }
+
+                return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::indexAction',  '_route' => 'sdzblog_accueil',);
+            }
+
+            // etudiant_eol
+            if ($pathinfo === '/esprit/etudiant') {
+                return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::contactAction',  '_route' => 'etudiant_eol',);
+            }
+
+            // admin_eol
+            if ($pathinfo === '/esprit/admin') {
+                return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::indexAction',  '_route' => 'admin_eol',);
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/log')) {
