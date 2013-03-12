@@ -1,3 +1,7 @@
+esprit_rubrique:
+    resource: "@EspritRubriqueBundle/Resources/config/routing.yml"
+    prefix:   /
+
 esprit_eol:
     resource: "@AcmeDemoBundle/Resources/config/routing.yml"
     prefix:   /esprit

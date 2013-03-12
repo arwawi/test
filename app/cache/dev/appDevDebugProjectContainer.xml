@@ -21,6 +21,7 @@
       <parameter key="JMSSecurityExtraBundle">JMS\SecurityExtraBundle\JMSSecurityExtraBundle</parameter>
       <parameter key="FOSUserBundle">FOS\UserBundle\FOSUserBundle</parameter>
       <parameter key="EspritUserBundle">Esprit\UserBundle\EspritUserBundle</parameter>
+      <parameter key="EspritRubriqueBundle">Esprit\RubriqueBundle\EspritRubriqueBundle</parameter>
       <parameter key="AcmeDemoBundle">Acme\DemoBundle\AcmeDemoBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -29,7 +30,7 @@
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">appDevDebugProjectContainer</parameter>
     <parameter key="database_driver">oci8</parameter>
-    <parameter key="database_host">abdelaziz-TOSH</parameter>
+    <parameter key="database_host">Hassine-PC</parameter>
     <parameter key="database_port">1521</parameter>
     <parameter key="database_name">XE</parameter>
     <parameter key="database_user">esprit</parameter>
@@ -483,8 +484,8 @@
     <parameter key="jms_di_extra.disable_grep">false</parameter>
     <parameter key="jms_di_extra.doctrine_integration">true</parameter>
     <parameter key="jms_di_extra.cache_warmer.controller_file_blacklist" type="collection"/>
-    <parameter key="jms_di_extra.doctrine_integration.entity_manager.file">C:/wamp/www/SF_ESPRIT/app/cache/dev/jms_diextra/doctrine/EntityManager_513cf4e9a8cf2.php</parameter>
-    <parameter key="jms_di_extra.doctrine_integration.entity_manager.class">EntityManager513cf4e9a8cf2_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager</parameter>
+    <parameter key="jms_di_extra.doctrine_integration.entity_manager.file">C:/wamp/www/SF_ESPRIT/app/cache/dev/jms_diextra/doctrine/EntityManager_513df47593ac1.php</parameter>
+    <parameter key="jms_di_extra.doctrine_integration.entity_manager.class">EntityManager513df47593ac1_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager</parameter>
     <parameter key="security.secured_services" type="collection"/>
     <parameter key="security.access.method_interceptor.class">JMS\SecurityExtraBundle\Security\Authorization\Interception\MethodSecurityInterceptor</parameter>
     <parameter key="security.access.method_access_control" type="collection"/>
@@ -1664,7 +1665,7 @@
       <argument type="collection">
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>513cf4e71cf1c</argument>
+            <argument>513df4747c485</argument>
           </service>
         </argument>
         <argument type="service">
@@ -1872,7 +1873,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>513cf4e71cf1c</argument>
+            <argument>513df4747c485</argument>
             <argument type="service" id="monolog.logger.security"/>
           </service>
         </argument>
@@ -2352,7 +2353,7 @@
     <service id="doctrine.dbal.default_connection" class="stdClass" factory-method="createConnection" factory-service="doctrine.dbal.connection_factory">
       <argument type="collection">
         <argument key="dbname">XE</argument>
-        <argument key="host">abdelaziz-TOSH</argument>
+        <argument key="host">Hassine-PC</argument>
         <argument key="port">1521</argument>
         <argument key="user">esprit</argument>
         <argument key="password">esprit</argument>
@@ -2422,8 +2423,8 @@
     <service id="doctrine.orm.default_manager_configurator" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator">
       <argument type="collection"/>
     </service>
-    <service id="doctrine.orm.default_entity_manager" class="EntityManager513cf4e9a8cf2_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager">
-      <file>C:/wamp/www/SF_ESPRIT/app/cache/dev/jms_diextra/doctrine/EntityManager_513cf4e9a8cf2.php</file>
+    <service id="doctrine.orm.default_entity_manager" class="EntityManager513df47593ac1_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager">
+      <file>C:/wamp/www/SF_ESPRIT/app/cache/dev/jms_diextra/doctrine/EntityManager_513df47593ac1.php</file>
       <argument type="service">
         <service class="Doctrine\ORM\EntityManager" factory-method="create" public="false">
           <argument type="service" id="doctrine.dbal.default_connection"/>
@@ -2433,6 +2434,7 @@
                 <argument type="collection">
                   <argument key="FOSUserBundle">FOS\UserBundle\Entity</argument>
                   <argument key="EspritUserBundle">Esprit\UserBundle\Entity</argument>
+                  <argument key="EspritRubriqueBundle">Esprit\RubriqueBundle\Entity</argument>
                 </argument>
               </call>
               <call method="setMetadataCacheImpl">
@@ -2484,10 +2486,23 @@
                           <argument type="service" id="annotation_reader"/>
                           <argument type="collection">
                             <argument>C:\wamp\www\SF_ESPRIT\src\Esprit\UserBundle\Entity</argument>
+                            <argument>C:\wamp\www\SF_ESPRIT\src\Esprit\RubriqueBundle\Entity</argument>
                           </argument>
                         </service>
                       </argument>
                       <argument>Esprit\UserBundle\Entity</argument>
+                    </call>
+                    <call method="addDriver">
+                      <argument type="service">
+                        <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                          <argument type="service" id="annotation_reader"/>
+                          <argument type="collection">
+                            <argument>C:\wamp\www\SF_ESPRIT\src\Esprit\UserBundle\Entity</argument>
+                            <argument>C:\wamp\www\SF_ESPRIT\src\Esprit\RubriqueBundle\Entity</argument>
+                          </argument>
+                        </service>
+                      </argument>
+                      <argument>Esprit\RubriqueBundle\Entity</argument>
                     </call>
                   </service>
                 </argument>
@@ -3063,6 +3078,10 @@
       <call method="addPath">
         <argument>C:\wamp\www\SF_ESPRIT\src\Esprit\UserBundle/Resources/views</argument>
         <argument>EspritUser</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp\www\SF_ESPRIT\src\Esprit\RubriqueBundle/Resources/views</argument>
+        <argument>EspritRubrique</argument>
       </call>
       <call method="addPath">
         <argument>C:\wamp\www\SF_ESPRIT\src\Acme\DemoBundle/Resources/views</argument>
