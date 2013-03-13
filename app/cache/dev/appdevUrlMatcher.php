@@ -206,128 +206,135 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // esprit_rubrique_homepage
-        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'esprit_rubrique_homepage')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DefaultController::indexAction',));
-        }
-
-        if (0 === strpos($pathinfo, '/rubrique')) {
-            // rubrique
-            if (rtrim($pathinfo, '/') === '/rubrique') {
+        if (0 === strpos($pathinfo, '/scolarite')) {
+            // esprit_rubrique_homepage
+            if (rtrim($pathinfo, '/') === '/scolarite') {
                 if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', 'rubrique');
+                    return $this->redirect($pathinfo.'/', 'esprit_rubrique_homepage');
                 }
 
-                return array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::indexAction',  '_route' => 'rubrique',);
+                return array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::indexAction',  '_route' => 'esprit_rubrique_homepage',);
             }
 
-            // rubrique_show
-            if (preg_match('#^/rubrique/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'rubrique_show')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::showAction',));
-            }
+            if (0 === strpos($pathinfo, '/scolarite/rubrique')) {
+                // rubrique
+                if (rtrim($pathinfo, '/') === '/scolarite/rubrique') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'rubrique');
+                    }
 
-            // rubrique_new
-            if ($pathinfo === '/rubrique/new') {
-                return array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::newAction',  '_route' => 'rubrique_new',);
-            }
-
-            // rubrique_create
-            if ($pathinfo === '/rubrique/create') {
-                if ($this->context->getMethod() != 'POST') {
-                    $allow[] = 'POST';
-                    goto not_rubrique_create;
+                    return array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::indexAction',  '_route' => 'rubrique',);
                 }
 
-                return array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::createAction',  '_route' => 'rubrique_create',);
-            }
-            not_rubrique_create:
-
-            // rubrique_edit
-            if (preg_match('#^/rubrique/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'rubrique_edit')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::editAction',));
-            }
-
-            // rubrique_update
-            if (preg_match('#^/rubrique/(?P<id>[^/]++)/update$#s', $pathinfo, $matches)) {
-                if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
-                    $allow = array_merge($allow, array('POST', 'PUT'));
-                    goto not_rubrique_update;
+                // rubrique_show
+                if (preg_match('#^/scolarite/rubrique/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'rubrique_show')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::showAction',));
                 }
 
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'rubrique_update')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::updateAction',));
-            }
-            not_rubrique_update:
-
-            // rubrique_delete
-            if (preg_match('#^/rubrique/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
-                if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
-                    $allow = array_merge($allow, array('POST', 'DELETE'));
-                    goto not_rubrique_delete;
+                // rubrique_new
+                if ($pathinfo === '/scolarite/rubrique/new') {
+                    return array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::newAction',  '_route' => 'rubrique_new',);
                 }
 
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'rubrique_delete')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::deleteAction',));
-            }
-            not_rubrique_delete:
+                // rubrique_create
+                if ($pathinfo === '/scolarite/rubrique/create') {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_rubrique_create;
+                    }
 
-        }
+                    return array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::createAction',  '_route' => 'rubrique_create',);
+                }
+                not_rubrique_create:
 
-        if (0 === strpos($pathinfo, '/document')) {
-            // document
-            if (rtrim($pathinfo, '/') === '/document') {
-                if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', 'document');
+                // rubrique_edit
+                if (preg_match('#^/scolarite/rubrique/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'rubrique_edit')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::editAction',));
                 }
 
-                return array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::indexAction',  '_route' => 'document',);
+                // rubrique_update
+                if (preg_match('#^/scolarite/rubrique/(?P<id>[^/]++)/update$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
+                        $allow = array_merge($allow, array('POST', 'PUT'));
+                        goto not_rubrique_update;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'rubrique_update')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::updateAction',));
+                }
+                not_rubrique_update:
+
+                // rubrique_delete
+                if (preg_match('#^/scolarite/rubrique/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                        $allow = array_merge($allow, array('POST', 'DELETE'));
+                        goto not_rubrique_delete;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'rubrique_delete')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\RubriqueController::deleteAction',));
+                }
+                not_rubrique_delete:
+
             }
 
-            // document_show
-            if (preg_match('#^/document/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'document_show')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::showAction',));
-            }
+            if (0 === strpos($pathinfo, '/scolarite/document')) {
+                // document
+                if (rtrim($pathinfo, '/') === '/scolarite/document') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'document');
+                    }
 
-            // document_new
-            if ($pathinfo === '/document/new') {
-                return array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::newAction',  '_route' => 'document_new',);
-            }
-
-            // document_create
-            if ($pathinfo === '/document/create') {
-                if ($this->context->getMethod() != 'POST') {
-                    $allow[] = 'POST';
-                    goto not_document_create;
+                    return array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::indexAction',  '_route' => 'document',);
                 }
 
-                return array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::createAction',  '_route' => 'document_create',);
-            }
-            not_document_create:
-
-            // document_edit
-            if (preg_match('#^/document/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'document_edit')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::editAction',));
-            }
-
-            // document_update
-            if (preg_match('#^/document/(?P<id>[^/]++)/update$#s', $pathinfo, $matches)) {
-                if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
-                    $allow = array_merge($allow, array('POST', 'PUT'));
-                    goto not_document_update;
+                // document_show
+                if (preg_match('#^/scolarite/document/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'document_show')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::showAction',));
                 }
 
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'document_update')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::updateAction',));
-            }
-            not_document_update:
-
-            // document_delete
-            if (preg_match('#^/document/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
-                if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
-                    $allow = array_merge($allow, array('POST', 'DELETE'));
-                    goto not_document_delete;
+                // document_new
+                if ($pathinfo === '/scolarite/document/new') {
+                    return array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::newAction',  '_route' => 'document_new',);
                 }
 
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'document_delete')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::deleteAction',));
+                // document_create
+                if ($pathinfo === '/scolarite/document/create') {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_document_create;
+                    }
+
+                    return array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::createAction',  '_route' => 'document_create',);
+                }
+                not_document_create:
+
+                // document_edit
+                if (preg_match('#^/scolarite/document/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'document_edit')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::editAction',));
+                }
+
+                // document_update
+                if (preg_match('#^/scolarite/document/(?P<id>[^/]++)/update$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
+                        $allow = array_merge($allow, array('POST', 'PUT'));
+                        goto not_document_update;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'document_update')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::updateAction',));
+                }
+                not_document_update:
+
+                // document_delete
+                if (preg_match('#^/scolarite/document/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                        $allow = array_merge($allow, array('POST', 'DELETE'));
+                        goto not_document_delete;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'document_delete')), array (  '_controller' => 'Esprit\\RubriqueBundle\\Controller\\DocumentController::deleteAction',));
+                }
+                not_document_delete:
+
             }
-            not_document_delete:
 
         }
 

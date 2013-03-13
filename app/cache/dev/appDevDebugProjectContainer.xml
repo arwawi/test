@@ -273,10 +273,13 @@
     <parameter key="security.authentication.hide_user_not_found">true</parameter>
     <parameter key="security.role_hierarchy.roles" type="collection">
       <parameter key="ROLE_ADMIN" type="collection">
-        <parameter>ROLE_USER</parameter>
+        <parameter>ROLE_SCOL</parameter>
+        <parameter>ROLE_STAGE</parameter>
+        <parameter>ROLE_ETUDIANT</parameter>
+        <parameter>ROLE_SEMINAIRE</parameter>
+        <parameter>ROLE_COMMUNICATION</parameter>
       </parameter>
       <parameter key="ROLE_SUPER_ADMIN" type="collection">
-        <parameter>ROLE_USER</parameter>
         <parameter>ROLE_ADMIN</parameter>
         <parameter>ROLE_ALLOWED_TO_SWITCH</parameter>
       </parameter>
@@ -484,8 +487,8 @@
     <parameter key="jms_di_extra.disable_grep">false</parameter>
     <parameter key="jms_di_extra.doctrine_integration">true</parameter>
     <parameter key="jms_di_extra.cache_warmer.controller_file_blacklist" type="collection"/>
-    <parameter key="jms_di_extra.doctrine_integration.entity_manager.file">C:/wamp/www/SF_ESPRIT/app/cache/dev/jms_diextra/doctrine/EntityManager_513ef547ea712.php</parameter>
-    <parameter key="jms_di_extra.doctrine_integration.entity_manager.class">EntityManager513ef547ea712_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager</parameter>
+    <parameter key="jms_di_extra.doctrine_integration.entity_manager.file">C:/wamp/www/SF_ESPRIT/app/cache/dev/jms_diextra/doctrine/EntityManager_51407c795c528.php</parameter>
+    <parameter key="jms_di_extra.doctrine_integration.entity_manager.class">EntityManager51407c795c528_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager</parameter>
     <parameter key="security.secured_services" type="collection"/>
     <parameter key="security.access.method_interceptor.class">JMS\SecurityExtraBundle\Security\Authorization\Interception\MethodSecurityInterceptor</parameter>
     <parameter key="security.access.method_access_control" type="collection"/>
@@ -1665,7 +1668,7 @@
       <argument type="collection">
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>513ef546ad5cb</argument>
+            <argument>51407c78a49a6</argument>
           </service>
         </argument>
         <argument type="service">
@@ -1739,10 +1742,13 @@
     <service id="security.role_hierarchy" class="Symfony\Component\Security\Core\Role\RoleHierarchy">
       <argument type="collection">
         <argument key="ROLE_ADMIN" type="collection">
-          <argument>ROLE_USER</argument>
+          <argument>ROLE_SCOL</argument>
+          <argument>ROLE_STAGE</argument>
+          <argument>ROLE_ETUDIANT</argument>
+          <argument>ROLE_SEMINAIRE</argument>
+          <argument>ROLE_COMMUNICATION</argument>
         </argument>
         <argument key="ROLE_SUPER_ADMIN" type="collection">
-          <argument>ROLE_USER</argument>
           <argument>ROLE_ADMIN</argument>
           <argument>ROLE_ALLOWED_TO_SWITCH</argument>
         </argument>
@@ -1761,7 +1767,7 @@
             </argument>
             <argument key="security.firewall.map.context.login" type="service">
               <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-                <argument>^/(login$|register|resetting)</argument>
+                <argument>^/(login$|register|resetting|esprit)</argument>
               </service>
             </argument>
             <argument key="security.firewall.map.context.main" type="service">
@@ -1799,7 +1805,74 @@
       </argument>
       <argument type="service" id="monolog.logger.security"/>
     </service>
-    <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap" public="false"/>
+    <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap" public="false">
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/stage</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>ROLE_STAGE</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/etudiant</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>ROLE_ETUDIANT</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/scolarite</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>ROLE_SCOL</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/seminaire</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>ROLE_SEMINAIRE</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/admin</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>ROLE_ADMIN</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/communication</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>ROLE_COM</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+    </service>
     <service id="security.access_listener" class="Symfony\Component\Security\Http\Firewall\AccessListener" public="false">
       <tag name="monolog.logger" channel="security"/>
       <argument type="service" id="security.context"/>
@@ -1873,7 +1946,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>513ef546ad5cb</argument>
+            <argument>51407c78a49a6</argument>
             <argument type="service" id="monolog.logger.security"/>
           </service>
         </argument>
@@ -2423,8 +2496,8 @@
     <service id="doctrine.orm.default_manager_configurator" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator">
       <argument type="collection"/>
     </service>
-    <service id="doctrine.orm.default_entity_manager" class="EntityManager513ef547ea712_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager">
-      <file>C:/wamp/www/SF_ESPRIT/app/cache/dev/jms_diextra/doctrine/EntityManager_513ef547ea712.php</file>
+    <service id="doctrine.orm.default_entity_manager" class="EntityManager51407c795c528_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager">
+      <file>C:/wamp/www/SF_ESPRIT/app/cache/dev/jms_diextra/doctrine/EntityManager_51407c795c528.php</file>
       <argument type="service">
         <service class="Doctrine\ORM\EntityManager" factory-method="create" public="false">
           <argument type="service" id="doctrine.dbal.default_connection"/>

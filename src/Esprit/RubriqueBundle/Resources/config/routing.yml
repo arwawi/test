@@ -1,6 +1,6 @@
 esprit_rubrique_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: EspritRubriqueBundle:Default:index }
+    pattern:  /
+    defaults: { _controller: EspritRubriqueBundle:Document:index }
 EspritRubriqueBundle_rubrique:
     resource: "@EspritRubriqueBundle/Resources/config/routing/rubrique.yml"
     prefix:   /rubrique

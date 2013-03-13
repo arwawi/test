@@ -1,6 +1,6 @@
 esprit_rubrique:
     resource: "@EspritRubriqueBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /scolarite
 
 esprit_eol:
     resource: "@AcmeDemoBundle/Resources/config/routing.yml"

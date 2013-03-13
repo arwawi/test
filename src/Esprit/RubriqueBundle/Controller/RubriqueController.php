@@ -4,7 +4,7 @@ namespace Esprit\RubriqueBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use JMS\SecurityExtraBundle\Annotation\Secure;
 use Esprit\RubriqueBundle\Entity\Rubrique;
 use Esprit\RubriqueBundle\Form\RubriqueType;
 
@@ -18,6 +18,8 @@ class RubriqueController extends Controller
      * Lists all Rubrique entities.
      *
      */
+    
+   
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
