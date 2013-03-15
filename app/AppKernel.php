@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Esprit\UserBundle\EspritUserBundle(),
             new Esprit\RubriqueBundle\EspritRubriqueBundle(),
+            new Sonata\CacheBundle\SonataCacheBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -2,4 +2,4 @@ _assetic:
     resource: .
     type: assetic
 _app:
-    resource: 'C:/wamp/www/SF_ESPRIT/app/config/routing_dev.yml'
+    resource: 'C:/wamp/www/SF_ESPRITt/app/config/routing_dev.yml'

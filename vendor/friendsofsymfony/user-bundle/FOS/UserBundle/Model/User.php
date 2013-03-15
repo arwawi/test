@@ -585,4 +585,22 @@ abstract class User implements UserInterface, GroupableInterface
     {
         return (string) $this->getUsername();
     }
+   
+
+    /**
+     * Get expiresAt
+     *
+     * @return \DateTime 
+     */
+    public function getExpiresAt()
+    {
+        return $this->expiresAt;
+    }
+
+    public function getCredentialsExpireAt()
+    {
+        return $this->credentialsExpireAt;
+    }
+    
+    
 }

@@ -25,7 +25,7 @@ security:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false  
         login:
-            pattern:   ^/(login$|register|resetting|esprit)  # Les adresses de ces pages sont login, register et resetting
+            pattern:   ^/(login$|resetting|esprit)  # Les adresses de ces pages sont login, register et resetting
             anonymous: true                           # On autorise bien évidemment les anonymes sur ces pages !
         # Firewall principal pour le reste de notre site
         main:
@@ -48,6 +48,7 @@ security:
         - { path: ^/etudiant, roles: ROLE_ETUDIANT}
         - { path: ^/scolarite, roles: ROLE_SCOL}
         - { path: ^/seminaire, roles: ROLE_SEMINAIRE}
+        - { path: ^/register, roles: ROLE_ADMIN}
         - { path: ^/admin, roles: ROLE_ADMIN}
         - { path: ^/communication, roles: ROLE_COM}
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

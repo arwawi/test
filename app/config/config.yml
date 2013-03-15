@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    translator:      { fallback: %locale% }
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -68,9 +68,16 @@ fos_user:
     db_driver:     orm                        # Le type de BDD à utiliser, nous utilisons l'ORM Doctrine depuis le début
     firewall_name: main                       # Le nom du firewall duquel on utilisera ces utilisateurs
     user_class:    Esprit\UserBundle\Entity\User # La classe de l'entité User que nous venons 
-
+    registration:
+        form:
+            type: esprit_userbundle_usertype 
 services:
     OracleSessionInit:
         class: Doctrine\DBAL\Event\Listeners\OracleSessionInit 
         tags:
             - { name: doctrine.event_listener, event: postConnect }
+    Esprit.registration.form.type:
+        class: Esprit\UserBundle\Form\UserType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: esprit_userbundle_usertype }
