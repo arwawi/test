@@ -1,0 +1,4 @@
+esprit_user_etudiant:
+    resource: "@EspritUserBundle/Resources/config/routing/etudiant.yml"
+    prefix:   /etudiant
+

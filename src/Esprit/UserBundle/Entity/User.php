@@ -22,7 +22,14 @@ class User extends BaseUser
 * @ORM\JoinColumn(name="Etudiant_id", referencedColumnName="id")
 */
     private $etudiant;
-
+//    /**
+//     * @ORM\ManyToMany(targetEntity="Esprit\UserBundle\Entity\Group")
+//     * @ORM\JoinTable(name="fhhhh_user_group",
+//     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+//     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+//     * )
+//     */
+//    protected $groups;
     /**
      * Get id
      *

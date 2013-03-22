@@ -22,7 +22,16 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Esprit\UserBundle\EspritUserBundle(),
             new Esprit\RubriqueBundle\EspritRubriqueBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\CacheBundle\SonataCacheBundle(),
+            new Sonata\jQueryBundle\SonatajQueryBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new Sonata\IntlBundle\SonataIntlBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
