@@ -11,18 +11,22 @@
 
 namespace Sonata\UserBundle\Entity;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Esprit\UserBundle\Entity\Etudiant;
+use Esprit\UserBundle\Form\EtudiantType;
 use Sonata\UserBundle\Model\User as AbstractedUser;
 
 /**
  * Represents a Base User Entity
  */
-class BaseUser extends AbstractedUser
+class BaseUser extends AbstractedUser  
 {
     /**
      * Hook on pre-persist operations
-     */
+     */   
     public function prePersist()
-    {
+    {  
         $this->createdAt = new \DateTime;
         $this->updatedAt = new \DateTime;
     }
