@@ -50,6 +50,7 @@ class GroupAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
+            ->add('roles') 
         ;
     }
 
@@ -63,7 +64,7 @@ class GroupAdmin extends Admin
             ->add('roles', 'sonata_security_roles', array(
                 'expanded' => true,
                 'multiple' => true,
-                'required' => false
+                'required' => true
             ))
         ;
     }

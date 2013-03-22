@@ -83,19 +83,23 @@ class UserAdmin extends Admin
                 ->add('locale')
                 ->add('timezone')
                 ->add('phone')
+                ->add('test','choice', array(
+    'choices'   => array('m' => 'Masculin', 'f' => 'Féminin'),
+    'required'  => false,
+))
             ->end()
-            ->with('Social')
-                ->add('facebookUid')
-                ->add('facebookName')
-                ->add('twitterUid')
-                ->add('twitterName')
-                ->add('gplusUid')
-                ->add('gplusName')
-            ->end()
-            ->with('Security')
-                ->add('token')
-                ->add('twoStepVerificationCode')
-            ->end()
+//            ->with('Social')
+//                ->add('facebookUid')
+//                ->add('facebookName')
+//                ->add('twitterUid')
+//                ->add('twitterName')
+//                ->add('gplusUid')
+//                ->add('gplusName')
+//            ->end()
+//            ->with('Security')
+//                ->add('token')
+//                ->add('twoStepVerificationCode')
+//            ->end()
         ;
     }
 
@@ -123,25 +127,29 @@ class UserAdmin extends Admin
                 ->add('locale', 'locale', array('required' => false))
                 ->add('timezone', 'timezone', array('required' => false))
                 ->add('phone', null, array('required' => false))
+                             ->add('test','choice', array(
+    'choices'   => array('ETUDIANT' => 'ETUDIANT', 'COMMUNICATION' => 'COMMUNICATION'),
+    'required'  => false,
+))
             ->end()
-            ->with('Social')
-                ->add('facebookUid', null, array('required' => false))
-                ->add('facebookName', null, array('required' => false))
-                ->add('twitterUid', null, array('required' => false))
-                ->add('twitterName', null, array('required' => false))
-                ->add('gplusUid', null, array('required' => false))
-                ->add('gplusName', null, array('required' => false))
-            ->end()
+//            ->with('Social')
+//                ->add('facebookUid', null, array('required' => false))
+//                ->add('facebookName', null, array('required' => false))
+//                ->add('twitterUid', null, array('required' => false))
+//                ->add('twitterName', null, array('required' => false))
+//                ->add('gplusUid', null, array('required' => false))
+//                ->add('gplusName', null, array('required' => false))
+//            ->end()
         ;
 
         if (!$this->getSubject()->hasRole('ROLE_SUPER_ADMIN')) {
             $formMapper
                 ->with('Management')
-                    ->add('roles', 'sonata_security_roles', array(
-                        'expanded' => true,
-                        'multiple' => true,
-                        'required' => false
-                    ))
+//                    ->add('roles', 'sonata_security_roles', array(
+//                        'expanded' => true,
+//                        'multiple' => true,
+//                        'required' => false
+//                    ))
                     ->add('locked', null, array('required' => false))
                     ->add('expired', null, array('required' => false))
                     ->add('enabled', null, array('required' => false))
@@ -150,12 +158,12 @@ class UserAdmin extends Admin
             ;
         }
 
-        $formMapper
-            ->with('Security')
-                ->add('token', null, array('required' => false))
-                ->add('twoStepVerificationCode', null, array('required' => false))
-            ->end()
-        ;
+//        $formMapper
+//            ->with('Security')
+//                ->add('token', null, array('required' => false))
+//                ->add('twoStepVerificationCode', null, array('required' => false))
+//            ->end()
+ //       ;
     }
 
     /**
