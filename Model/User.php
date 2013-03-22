@@ -33,6 +33,10 @@ abstract class User extends AbstractedUser implements UserInterface
      * @var string
      */
     protected $twoStepVerificationCode;
+     /**
+     * @var string
+     */
+    protected $test;
 
     /**
      * @var \DateTime
@@ -220,8 +224,26 @@ abstract class User extends AbstractedUser implements UserInterface
             $this->addGroup($group);
         }
     }
+/**
+     * Sets the two-step verification code
+     *
+     * @param string $twoStepVerificationCode
+     */
+    public function setTest($test)
+    {
+        $this->test = $test;
+    }
 
     /**
+     * Returns the two-step verification code
+     *
+     * @return string
+     */
+    public function getTest()
+    {
+        return $this->test;
+    }
+/**
      * Sets the two-step verification code
      *
      * @param string $twoStepVerificationCode
